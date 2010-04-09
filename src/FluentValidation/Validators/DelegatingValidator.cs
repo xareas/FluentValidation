@@ -76,6 +76,10 @@ namespace FluentValidation.Validators {
 			InnerValidator.SetErrorMessage(resourceSelector);
 		}
 
+		public bool UsingDefaultMesasge {
+			get { return false; }
+		}
+
 		IPropertyValidator IDelegatingValidator.InnerValidator {
 			get { return InnerValidator; }
 		}

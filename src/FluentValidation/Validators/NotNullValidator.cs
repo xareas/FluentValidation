@@ -17,9 +17,13 @@
 #endregion
 
 namespace FluentValidation.Validators {
+	using System;
+	using System.Collections.Generic;
 	using Resources;
 
-	public class NotNullValidator : PropertyValidator, INotNullValidator {
+	public class NotNullValidator : PropertyValidator, INotNullValidator, IDoJavascript {
+		private readonly static KeyValuePair<string, string> json = new KeyValuePair<string, string>("required", "true");
+
 		public NotNullValidator() : base(() => Messages.notnull_error) {
 			SupportsStandaloneValidation = true;
 		}
@@ -29,6 +33,10 @@ namespace FluentValidation.Validators {
 				return false;
 			}
 			return true;
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> ToJson() {
+			yield return json;
 		}
 	}
 

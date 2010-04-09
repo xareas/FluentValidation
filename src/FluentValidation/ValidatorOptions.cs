@@ -21,6 +21,10 @@ namespace FluentValidation {
 	using System.Reflection;
 
 	public static class ValidatorOptions {
+		public static Func<IValidatorFactory> CurrentValidatorFactory = () => {
+			throw new InvalidOperationException("The CurrentValidatorFactory has not been initialized.");
+		};
+
 		public static CascadeMode CascadeMode = CascadeMode.Continue;
 		public static Type ResourceProviderType;
 

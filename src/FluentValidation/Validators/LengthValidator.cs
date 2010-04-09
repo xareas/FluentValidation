@@ -18,11 +18,12 @@
 
 namespace FluentValidation.Validators {
 	using System;
+	using System.Collections.Generic;
 	using System.Linq.Expressions;
 	using Attributes;
 	using Resources;
 
-	public class LengthValidator : PropertyValidator, ILengthValidator {
+	public class LengthValidator : PropertyValidator, ILengthValidator, IDoJavascript {
 		public int Min { get; private set; }
 		public int Max { get; private set; }
 
@@ -53,6 +54,12 @@ namespace FluentValidation.Validators {
 			}
 
 			return true;
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> ToJson() {
+			yield return new KeyValuePair<string, string>("minlength", Min.ToString());
+			yield return new KeyValuePair<string, string>("maxlength", Max.ToString());
+
 		}
 	}
 

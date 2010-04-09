@@ -58,5 +58,9 @@ namespace FluentValidation.Validators {
 
 		public virtual void SetErrorMessage(Expression<Func<string>> resourceSelector) {
 		}
+
+		public bool UsingDefaultMesasge {
+			get { return false; }
+		}
 	}
 }

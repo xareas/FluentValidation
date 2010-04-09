@@ -40,5 +40,6 @@ namespace FluentValidation.Validators {
 		void SetErrorMessage(string message);
 		void SetErrorMessage(Type errorMessageResourceType, string resourceName);
 		void SetErrorMessage(Expression<Func<string>> resourceSelector);
+		bool UsingDefaultMesasge { get; }
 	}
 }

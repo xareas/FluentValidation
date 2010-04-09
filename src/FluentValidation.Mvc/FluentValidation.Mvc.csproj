@@ -87,6 +87,8 @@
     <Compile Include="FluentValidationModelValidator.cs" />
     <Compile Include="FluentValidationModelValidatorProvider.cs" />
     <Compile Include="FluentValidationPropertyValidator.cs" />
+    <Compile Include="HtmlHelperExtensions.cs" />
+    <Compile Include="HtmlRuleContext.cs" />
     <Compile Include="MetadataExtensions.cs" />
     <Compile Include="ValidationResultExtension.cs" />
   </ItemGroup>

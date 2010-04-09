@@ -78,6 +78,10 @@ namespace FluentValidation.Mvc {
 			throw new NotImplementedException();
 		}
 
+		public bool UsingDefaultMesasge {
+			get { return false; }
+		}
+
 		public Attribute ToAttribute() {
 			return attribute;
 		}

@@ -28,6 +28,7 @@ namespace FluentValidation.Validators {
 	public abstract class PropertyValidator : IPropertyValidator {
 		private readonly List<Func<object, object>> customFormatArgs = new List<Func<object, object>>();
 		private ResourceMetaData resourceMeta;
+		private bool usingDefaultMessage = true;
 
 		public Func<object, object> CustomStateProvider { get; set; }
 
@@ -47,14 +48,21 @@ namespace FluentValidation.Validators {
 
 		public void SetErrorMessage(string errorMessage) {
 			resourceMeta = new ResourceMetaData(null, null, () => errorMessage);
+			usingDefaultMessage = false;
 		}
 
 		public void SetErrorMessage(Type errorMessageResourceType, string resourceName) {
 			resourceMeta = ResourceHelper.BuildResourceAccessor(resourceName, errorMessageResourceType);
+			usingDefaultMessage = false;
 		}
 
 		public void SetErrorMessage(Expression<Func<string>> resourceSelector) {
 			resourceMeta = ResourceHelper.BuildResourceAccessor(resourceSelector);
+			usingDefaultMessage = false;
+		}
+
+		public bool UsingDefaultMesasge {
+			get { return usingDefaultMessage; }
 		}
 
 		public ICollection<Func<object, object>> CustomMessageFormatArguments {

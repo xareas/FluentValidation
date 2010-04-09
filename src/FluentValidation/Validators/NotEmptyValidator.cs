@@ -17,11 +17,14 @@
 #endregion
 
 namespace FluentValidation.Validators {
+	using System;
+	using System.Collections.Generic;
 	using Attributes;
 	using Resources;
 
-	public class NotEmptyValidator : PropertyValidator, INotEmptyValidator {
+	public class NotEmptyValidator : PropertyValidator, INotEmptyValidator, IDoJavascript {
 		readonly object defaultValueForType;
+		private readonly static KeyValuePair<string, string> json = new KeyValuePair<string, string>("required", "true");
 
 		public NotEmptyValidator(object defaultValueForType) : base(() => Messages.notempty_error) {
 			this.defaultValueForType = defaultValueForType;
@@ -35,6 +38,10 @@ namespace FluentValidation.Validators {
 			}
 
 			return true;
+		}
+
+		public IEnumerable<KeyValuePair<string, string>> ToJson() {
+			yield return json;
 		}
 	}
 
